@@ -206,6 +206,106 @@ public boolean[][] calcularMovimientosPosiblesTorre (Pieza t){
 return matriz;
 }
 
+
+
+public boolean[][] calcularMovimientosPosiblesAlfin (Pieza t){
+
+    boolean[][] matriz = new boolean[numFilas][numColumnas];
+    Casilla[][] casillas = getTablero();
+ 
+    //movimiento hacia la Arriba-derecha
+    int i = t.getCasiila().posFila() - 1;
+    int j = t.getCasiila().posColumna() +1;
+    
+    while (i>=0 && j < numColumnas){
+        if(casillas[i][j].estaOcupada()){
+
+            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i][j] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i][j] = true;
+        }
+        i--;
+        j++;
+    }
+    
+    //movimiento hacia la arriba-izquierda 
+    int i2 = t.getCasiila().posFila() - 1;
+    int j2 = t.getCasiila().posColumna() - 1;
+    
+    while (i2>=0 && j2 >= 0){
+        if(casillas[i2][j2].estaOcupada()){
+
+            if(!casillas[i2][j2].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i2][j2] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i2][j2] = true;
+        }
+        i2--;
+        j2--;
+    }
+
+    //abajo-derecha
+    int i3 = t.getCasiila().posFila() + 1;
+    int j3 = t.getCasiila().posColumna() + 1;
+    
+    while (i3 < numFilas && j3 < numColumnas){
+        if(casillas[i3][j3].estaOcupada()){
+
+            if(!casillas[i3][j3].getPieza().getColor().equals(casillas[i3][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i3][j3] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i3][j3] = true;
+        }
+        i3++;
+        j3++;
+    }
+    //Abajo-izquierda
+    int i4 = t.getCasiila().posFila() + 1;
+    int j4 = t.getCasiila().posColumna() - 1;
+    
+    while (i4 < numFilas && j4 >=0){
+        if(casillas[i4][j4].estaOcupada()){
+
+            if(!casillas[i4][j4].getPieza().getColor().equals(casillas[i4][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i4][j4] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i4][j4] = true;
+        }
+        i4++;
+        j4--;
+    }
+    
+
+
+
+        
+    
+
+return matriz;
+
+}
+
 public Casilla[][] getTablero (){
 
     return this.tablero;

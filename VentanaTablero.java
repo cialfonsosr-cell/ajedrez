@@ -27,7 +27,7 @@ public class VentanaTablero extends JFrame implements ActionListener {
         columnas = matriz[0].length;
         
 
-        matriz[3][3].setPieza(new Torre(matriz[3][3], "NEGRO" ));
+        matriz[3][3].setPieza(new Alfil(matriz[3][3], "NEGRO" ));
 
         movimientosPosibles = new boolean[filas][columnas];
 
@@ -99,7 +99,7 @@ public class VentanaTablero extends JFrame implements ActionListener {
         if (botonSeleccionado == null) {
             
                mover = matriz[f][c].getPieza();
-               matriz[f][c].borrarPieza();
+              // matriz[f][c].borrarPieza();
             // Validamos que no esté intentando seleccionar una casilla vacía
             if (botonPulsado.getText().equals(" ")) {
                 botonSeleccionado = botonPulsado;
@@ -123,7 +123,8 @@ public class VentanaTablero extends JFrame implements ActionListener {
                     mostrarMatrizDeMovimientos();
                 }
                 if(botonPulsado.getText().equals("A")){
-                  //  movimientosPosibles = calcularMovimientosPosiblesAlfil(matriz[f][c]);
+                   movimientosPosibles = t.calcularMovimientosPosiblesAlfin (mover);
+                    mostrarMatrizDeMovimientos();
                 }
                 if(botonPulsado.getText().equals("C")){
                   //  movimientosPosibles = calcularMovimientosPosiblesCaballo(matriz[f][c]);
@@ -136,6 +137,13 @@ public class VentanaTablero extends JFrame implements ActionListener {
         } else {
            
             if(movimientosPosibles[f][c]){
+
+
+            int filaOrigen = (int) botonSeleccionado.getClientProperty("fila");
+            int columnaOrigen = (int) botonSeleccionado.getClientProperty("columna");
+            
+            // Borramos la pieza de su vieja posición
+            matriz[filaOrigen][columnaOrigen].borrarPieza();
 
                 mover.setCasilla(matriz[f][c]);
                 matriz[f][c].setPieza(mover);
