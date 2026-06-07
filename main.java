@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 //movimientos posibles del rey
 
 
+
 public class main {
 
     public static void main(String[] args) {
