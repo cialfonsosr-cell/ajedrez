@@ -116,7 +116,8 @@ public class VentanaTablero extends JFrame implements ActionListener {
                      mostrarMatrizDeMovimientos();
                 }
                 if(botonPulsado.getText().equals("P")){
-                  //  movimientosPosibles = calcularMovimientosPosiblesPeon(matriz[f][c]);
+                   movimientosPosibles = t.calcularMovimientosPosiblesPeon(mover);
+                   mostrarMatrizDeMovimientos();
                 }
                 if(botonPulsado.getText().equals("T")){
                    
@@ -161,10 +162,12 @@ public class VentanaTablero extends JFrame implements ActionListener {
             botonSeleccionado.setBorder(null); 
             
             // Reseteamos la variable para que el próximo clic vuelva a ser el "primer clic"
-            botonSeleccionado = null;     
+         
+        }
+
+           botonSeleccionado = null;     
             
             vaciarMatrizMovimientos();
-        }
     }
     }
 

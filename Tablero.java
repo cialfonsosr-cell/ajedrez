@@ -70,35 +70,16 @@ String color;
            Pieza p = null; 
             if(i== 1){
               
-                p = new Peon(tablero[i][j],"BLANCO");
+                p = new Peon(tablero[i][j],"NEGRO");
                
             }
             if(i == numFilas - 2 ){
-                  p = new Peon(tablero[i][j],"NEGRO");
+                  p = new Peon(tablero[i][j],"BLANCO");
             }
 
            
 
             if(i == 0){
-                if(j == 0 || j == numColumnas -1){
-                     p = new Torre(tablero[i][j],"BLANCO");
-                }
-                if(j == 1 || j == numColumnas -2){
-                     p = new Caballo(tablero[i][j],"BLANCO");
-                }
-                if(j == 2 || j == numColumnas -3){
-                     p = new Alfil(tablero[i][j],"BLANCO");
-                }
-                 if(j == 3 ){
-                     p = new Reina(tablero[i][j],"BLANCO");
-                }
-                if(j == numColumnas-4 ){
-                    p = new Rey(tablero[i][j], "BLANCO");
-                }
-
-            }
-
-            if(i == numFilas -1){
                 if(j == 0 || j == numColumnas -1){
                      p = new Torre(tablero[i][j],"NEGRO");
                 }
@@ -113,6 +94,25 @@ String color;
                 }
                 if(j == numColumnas-4 ){
                     p = new Rey(tablero[i][j], "NEGRO");
+                }
+
+            }
+
+            if(i == numFilas -1){
+                if(j == 0 || j == numColumnas -1){
+                     p = new Torre(tablero[i][j],"BLANCO");
+                }
+                if(j == 1 || j == numColumnas -2){
+                     p = new Caballo(tablero[i][j],"BLANCO");
+                }
+                if(j == 2 || j == numColumnas -3){
+                     p = new Alfil(tablero[i][j],"BLANCO");
+                }
+                 if(j == 3 ){
+                     p = new Reina(tablero[i][j],"BLANCO");
+                }
+                if(j == numColumnas-4 ){
+                    p = new Rey(tablero[i][j], "BLANCO");
                 }
 
             }
@@ -133,13 +133,15 @@ public boolean[][] calcularMovimientosPosiblesTorre (Pieza t){
 
     boolean[][] matriz = new boolean[numFilas][numColumnas];
     Casilla[][] casillas = getTablero();
+
+    String colorOriginal = t.getColor();
  
     //movimiento hacia la derecha
     int i = t.getCasiila().posFila();
     for(int j = t.getCasiila().posColumna() + 1; j< numColumnas ; j++){
         if(casillas[i][j].estaOcupada()){
 
-            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i][j] = true;
             }
 
@@ -154,7 +156,7 @@ public boolean[][] calcularMovimientosPosiblesTorre (Pieza t){
      for(int j = t.getCasiila().posColumna() - 1; j>= 0; j--){
          if(casillas[i][j].estaOcupada()){
 
-            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i][j] = true;
             }
 
@@ -170,7 +172,7 @@ public boolean[][] calcularMovimientosPosiblesTorre (Pieza t){
     for(int i2 = t.getCasiila().posFila() + 1; i2< numFilas; i2++){
         if(casillas[i2][j].estaOcupada()){
 
-            if(!casillas[i2][j].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i2][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i2][j] = true;
             }
                 break;
@@ -186,7 +188,7 @@ public boolean[][] calcularMovimientosPosiblesTorre (Pieza t){
     for(int i2 = t.getCasiila().posFila() -1 ; i2 >= 0; i2--){
         if(casillas[i2][j].estaOcupada()){
 
-            if(!casillas[i2][j].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i2][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i2][j] = true;
             }
 
@@ -210,6 +212,8 @@ return matriz;
 
 public boolean[][] calcularMovimientosPosiblesAlfin (Pieza t){
 
+
+    String colorOriginal = t.getColor();
     boolean[][] matriz = new boolean[numFilas][numColumnas];
     Casilla[][] casillas = getTablero();
  
@@ -220,7 +224,7 @@ public boolean[][] calcularMovimientosPosiblesAlfin (Pieza t){
     while (i>=0 && j < numColumnas){
         if(casillas[i][j].estaOcupada()){
 
-            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i][j] = true;
             }
 
@@ -241,7 +245,7 @@ public boolean[][] calcularMovimientosPosiblesAlfin (Pieza t){
     while (i2>=0 && j2 >= 0){
         if(casillas[i2][j2].estaOcupada()){
 
-            if(!casillas[i2][j2].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i2][j2].getPieza().getColor().equals(colorOriginal)){
                 matriz[i2][j2] = true;
             }
 
@@ -262,7 +266,7 @@ public boolean[][] calcularMovimientosPosiblesAlfin (Pieza t){
     while (i3 < numFilas && j3 < numColumnas){
         if(casillas[i3][j3].estaOcupada()){
 
-            if(!casillas[i3][j3].getPieza().getColor().equals(casillas[i3][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i3][j3].getPieza().getColor().equals(colorOriginal)){
                 matriz[i3][j3] = true;
             }
 
@@ -282,7 +286,7 @@ public boolean[][] calcularMovimientosPosiblesAlfin (Pieza t){
     while (i4 < numFilas && j4 >=0){
         if(casillas[i4][j4].estaOcupada()){
 
-            if(!casillas[i4][j4].getPieza().getColor().equals(casillas[i4][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i4][j4].getPieza().getColor().equals(colorOriginal)){
                 matriz[i4][j4] = true;
             }
 
@@ -310,6 +314,8 @@ return matriz;
 
 public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
    
+
+    String colorOriginal = t.getColor();
     boolean[][] matriz = new boolean[numFilas][numColumnas];
     Casilla[][] casillas = getTablero();
 
@@ -318,7 +324,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     for(int j = t.getCasiila().posColumna() + 1; j< numColumnas ; j++){
         if(casillas[i][j].estaOcupada()){
 
-            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i][j] = true;
             }
 
@@ -333,7 +339,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
      for(int j = t.getCasiila().posColumna() - 1; j>= 0; j--){
          if(casillas[i][j].estaOcupada()){
 
-            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i][j] = true;
             }
 
@@ -349,7 +355,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     for(int i2 = t.getCasiila().posFila() + 1; i2< numFilas; i2++){
         if(casillas[i2][j].estaOcupada()){
 
-            if(!casillas[i2][j].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i2][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i2][j] = true;
             }
                 break;
@@ -365,7 +371,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     for(int i2 = t.getCasiila().posFila() -1 ; i2 >= 0; i2--){
         if(casillas[i2][j].estaOcupada()){
 
-            if(!casillas[i2][j].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i2][j].getPieza().getColor().equals(colorOriginal)){
                 matriz[i2][j] = true;
             }
 
@@ -390,7 +396,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     while (i5>=0 && j5 < numColumnas){
         if(casillas[i5][j5].estaOcupada()){
 
-            if(!casillas[i5][j5].getPieza().getColor().equals(casillas[i5][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i5][j5].getPieza().getColor().equals(colorOriginal)){
                 matriz[i5][j5] = true;
             }
 
@@ -411,7 +417,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     while (i2>=0 && j2 >= 0){
         if(casillas[i2][j2].estaOcupada()){
 
-            if(!casillas[i2][j2].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i2][j2].getPieza().getColor().equals(colorOriginal)){
                 matriz[i2][j2] = true;
             }
 
@@ -432,7 +438,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     while (i3 < numFilas && j3 < numColumnas){
         if(casillas[i3][j3].estaOcupada()){
 
-            if(!casillas[i3][j3].getPieza().getColor().equals(casillas[i3][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i3][j3].getPieza().getColor().equals(colorOriginal)){
                 matriz[i3][j3] = true;
             }
 
@@ -452,7 +458,7 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
     while (i4 < numFilas && j4 >=0){
         if(casillas[i4][j4].estaOcupada()){
 
-            if(!casillas[i4][j4].getPieza().getColor().equals(casillas[i4][t.getCasiila().posColumna()].getPieza().getColor())){
+            if(!casillas[i4][j4].getPieza().getColor().equals(colorOriginal)){
                 matriz[i4][j4] = true;
             }
 
@@ -474,6 +480,58 @@ public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
 
 return matriz;
 
+}
+
+
+public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
+   
+    String colorOriginal = t.getColor();
+    boolean[][] matriz = new boolean[numFilas][numColumnas];
+    Casilla[][] casillas = getTablero();
+    Peon p = (Peon)t;
+
+
+    if(t.getColor() == "BLANCO"){
+    int i = t.getCasiila().posFila();
+    int j = t.getCasiila().posColumna();
+
+    if(j > 0){
+ if(casillas[i-1][j-1].estaOcupada()){
+
+      if(!casillas[i][j-1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i][j-1] = true;
+        }
+ }
+
+    }
+
+    if(j<numColumnas-1){
+       if( casillas[i-1][j+1].estaOcupada() ){
+  if(!casillas[i][j+1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i][j+1] = true;
+            
+        }
+       }
+    }
+
+   
+    if(i>0){
+        if(!casillas[i-1][j].estaOcupada()){
+            matriz[i-1][j] = true;
+        }
+    }
+    
+    if(p.getPrimerMovimiento()){
+
+       if(!casillas[i-1][j].estaOcupada() && !casillas[i-2][j].estaOcupada()){
+            matriz[i-2][j] = true;
+            p.gastarPrimerMovimiento();
+        }
+
+    }
+    }
+
+return matriz;
 }
 
 public Casilla[][] getTablero (){
