@@ -498,8 +498,8 @@ public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
     if(j > 0){
  if(casillas[i-1][j-1].estaOcupada()){
 
-      if(!casillas[i][j-1].getPieza().getColor().equals(colorOriginal)){
-            matriz[i][j-1] = true;
+      if(!casillas[i-1][j-1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i-1][j-1] = true;
         }
  }
 
@@ -507,8 +507,8 @@ public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
 
     if(j<numColumnas-1){
        if( casillas[i-1][j+1].estaOcupada() ){
-  if(!casillas[i][j+1].getPieza().getColor().equals(colorOriginal)){
-            matriz[i][j+1] = true;
+  if(!casillas[i-1][j+1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i-1][j+1] = true;
             
         }
        }
