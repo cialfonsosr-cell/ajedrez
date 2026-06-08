@@ -306,6 +306,176 @@ return matriz;
 
 }
 
+
+
+public boolean[][] calcularMovimientosPosiblesReina (Pieza t){
+   
+    boolean[][] matriz = new boolean[numFilas][numColumnas];
+    Casilla[][] casillas = getTablero();
+
+     //movimiento hacia la derecha
+    int i = t.getCasiila().posFila();
+    for(int j = t.getCasiila().posColumna() + 1; j< numColumnas ; j++){
+        if(casillas[i][j].estaOcupada()){
+
+            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i][j] = true;
+            }
+
+            
+            break;
+        }
+        else{
+            matriz[i][j] = true;
+        }
+    }
+    //movimiento hacia la izquierda 
+     for(int j = t.getCasiila().posColumna() - 1; j>= 0; j--){
+         if(casillas[i][j].estaOcupada()){
+
+            if(!casillas[i][j].getPieza().getColor().equals(casillas[i][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i][j] = true;
+            }
+
+             break;
+        }
+        else{
+            matriz[i][j] = true;
+        }
+    }
+
+    // //arriba
+    int j = t.getCasiila().posColumna();
+    for(int i2 = t.getCasiila().posFila() + 1; i2< numFilas; i2++){
+        if(casillas[i2][j].estaOcupada()){
+
+            if(!casillas[i2][j].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i2][j] = true;
+            }
+                break;
+            
+
+        }
+        else{
+            matriz[i2][j] = true;
+        }
+    }
+    
+    //Abajo
+    for(int i2 = t.getCasiila().posFila() -1 ; i2 >= 0; i2--){
+        if(casillas[i2][j].estaOcupada()){
+
+            if(!casillas[i2][j].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i2][j] = true;
+            }
+
+             break;
+
+        }
+        else{
+            matriz[i2][j] = true;
+        }
+    }
+
+
+
+
+ 
+
+
+    //movimiento hacia la Arriba-derecha
+    int i5 = t.getCasiila().posFila() - 1;
+    int j5 = t.getCasiila().posColumna() +1;
+    
+    while (i5>=0 && j5 < numColumnas){
+        if(casillas[i5][j5].estaOcupada()){
+
+            if(!casillas[i5][j5].getPieza().getColor().equals(casillas[i5][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i5][j5] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i5][j5] = true;
+        }
+        i5--;
+        j5++;
+    }
+    
+    //movimiento hacia la arriba-izquierda 
+    int i2 = t.getCasiila().posFila() - 1;
+    int j2 = t.getCasiila().posColumna() - 1;
+    
+    while (i2>=0 && j2 >= 0){
+        if(casillas[i2][j2].estaOcupada()){
+
+            if(!casillas[i2][j2].getPieza().getColor().equals(casillas[i2][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i2][j2] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i2][j2] = true;
+        }
+        i2--;
+        j2--;
+    }
+
+    //abajo-derecha
+    int i3 = t.getCasiila().posFila() + 1;
+    int j3 = t.getCasiila().posColumna() + 1;
+    
+    while (i3 < numFilas && j3 < numColumnas){
+        if(casillas[i3][j3].estaOcupada()){
+
+            if(!casillas[i3][j3].getPieza().getColor().equals(casillas[i3][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i3][j3] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i3][j3] = true;
+        }
+        i3++;
+        j3++;
+    }
+    //Abajo-izquierda
+    int i4 = t.getCasiila().posFila() + 1;
+    int j4 = t.getCasiila().posColumna() - 1;
+    
+    while (i4 < numFilas && j4 >=0){
+        if(casillas[i4][j4].estaOcupada()){
+
+            if(!casillas[i4][j4].getPieza().getColor().equals(casillas[i4][t.getCasiila().posColumna()].getPieza().getColor())){
+                matriz[i4][j4] = true;
+            }
+
+            break;
+            
+        }
+        else{
+            matriz[i4][j4] = true;
+        }
+        i4++;
+        j4--;
+    }
+    
+
+
+
+        
+    
+
+return matriz;
+
+}
+
 public Casilla[][] getTablero (){
 
     return this.tablero;

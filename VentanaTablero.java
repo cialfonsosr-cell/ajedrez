@@ -27,7 +27,7 @@ public class VentanaTablero extends JFrame implements ActionListener {
         columnas = matriz[0].length;
         
 
-        matriz[3][3].setPieza(new Alfil(matriz[3][3], "NEGRO" ));
+        matriz[3][3].setPieza(new Reina(matriz[3][3], "NEGRO" ));
 
         movimientosPosibles = new boolean[filas][columnas];
 
@@ -102,8 +102,8 @@ public class VentanaTablero extends JFrame implements ActionListener {
               // matriz[f][c].borrarPieza();
             // Validamos que no esté intentando seleccionar una casilla vacía
             if (botonPulsado.getText().equals(" ")) {
-                botonSeleccionado = botonPulsado;
-                botonPulsado.setBorder(BorderFactory.createLineBorder(Color.RED, 3)); // Marcamos 
+               // botonSeleccionado = botonPulsado;
+                //botonPulsado.setBorder(BorderFactory.createLineBorder(Color.RED, 3)); // Marcamos 
                //  mostrarMatrizDeMovimientos();
                 
             }
@@ -112,7 +112,8 @@ public class VentanaTablero extends JFrame implements ActionListener {
                   //  movimientosPosibles = calcularMovimientosPosiblesRey(matriz[f][c]);
                 }
                 if(botonPulsado.getText().equals("Q")){
-                  //  movimientosPosibles = calcularMovimientosPosiblesReina(matriz[f][c]);
+                    movimientosPosibles = t.calcularMovimientosPosiblesReina(mover);
+                     mostrarMatrizDeMovimientos();
                 }
                 if(botonPulsado.getText().equals("P")){
                   //  movimientosPosibles = calcularMovimientosPosiblesPeon(matriz[f][c]);
