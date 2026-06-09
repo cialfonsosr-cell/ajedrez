@@ -56,6 +56,13 @@ public class VentanaTablero extends JFrame implements ActionListener {
                     botonCasilla.setText(" ");
                 } else {
                     botonCasilla.setText(String.valueOf(matriz[i][j].getPieza().getSimbolo()));
+
+                    if ("BLANCO".equals(matriz[i][j].getPieza().getColor())) {
+                  botonCasilla.setForeground(new Color(255, 255, 255)); // Blanco puro
+    
+                } else {
+                      botonCasilla.setForeground(new Color(40, 40, 40)); // Negro/Gris oscuro
+                }
                 }
 
                 // Color de fondo de la casilla
@@ -151,9 +158,10 @@ public class VentanaTablero extends JFrame implements ActionListener {
                 matriz[f][c].setPieza(mover);
             // Es el segundo clic: Ejecutamos el movimiento visual
             String textoPieza = botonSeleccionado.getText();
-            
+            Color colorPieza = botonSeleccionado.getForeground();
             // Movemos el texto al nuevo botón
-            botonPulsado.setText(textoPieza);     
+            botonPulsado.setText(textoPieza);  
+            botonPulsado.setForeground(colorPieza);   
             
             // Dejamos el botón de origen vacío
             botonSeleccionado.setText(" ");       

@@ -491,11 +491,11 @@ public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
     Peon p = (Peon)t;
 
 
-    if(t.getColor() == "BLANCO"){
+    if(t.getColor().equals("BLANCO")){
     int i = t.getCasiila().posFila();
     int j = t.getCasiila().posColumna();
 
-    if(j > 0){
+    if(j > 0 && i> 0){
  if(casillas[i-1][j-1].estaOcupada()){
 
       if(!casillas[i-1][j-1].getPieza().getColor().equals(colorOriginal)){
@@ -505,7 +505,7 @@ public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
 
     }
 
-    if(j<numColumnas-1){
+    if(j<numColumnas-1 && i > 0){
        if( casillas[i-1][j+1].estaOcupada() ){
   if(!casillas[i-1][j+1].getPieza().getColor().equals(colorOriginal)){
             matriz[i-1][j+1] = true;
@@ -529,6 +529,49 @@ public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
         }
 
     }
+    }
+
+
+    else{
+
+    int i = t.getCasiila().posFila();
+    int j = t.getCasiila().posColumna();
+
+    if(j > 0 && i < numFilas -1){
+    if(casillas[i+1][j-1].estaOcupada()){
+
+      if(!casillas[i+1][j-1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i+1][j-1] = true;
+        }
+ }
+
+    }
+
+    if(j<numColumnas-1 && i < numFilas -1){
+       if( casillas[i+1][j+1].estaOcupada() ){
+  if(!casillas[i+1][j+1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i+1][j+1] = true;
+            
+        }
+       }
+    }
+
+   
+    if(i<numFilas-1){
+        if(!casillas[i+1][j].estaOcupada()){
+            matriz[i+1][j] = true;
+        }
+    }
+    
+    if(p.getPrimerMovimiento()){
+
+       if(!casillas[i+1][j].estaOcupada() && !casillas[i+2][j].estaOcupada()){
+            matriz[i+2][j] = true;
+            p.gastarPrimerMovimiento();
+        }
+
+    }
+
     }
 
 return matriz;

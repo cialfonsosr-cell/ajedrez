@@ -1,9 +1,16 @@
 import javax.swing.SwingUtilities;
 
 
+
+
+//TODO
 //añadir los simbolo por un pnj
-//poder mover las piezas 
-//movimientos posibles 
+
+//movimientos posibles peon terminar
+//movimientos posibles caballo
+//enpassant
+//enroque largo y corto
+//evitar mover una pieza que estubiese salvando al rey   
 //movimientos posibles del rey
 
 
