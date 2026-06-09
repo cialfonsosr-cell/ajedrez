@@ -577,6 +577,152 @@ public boolean[][] calcularMovimientosPosiblesPeon (Pieza t){
 return matriz;
 }
 
+
+public boolean[][] calcularMovimientosPosiblesCaballo (Pieza t){
+   
+    String colorOriginal = t.getColor();
+    boolean[][] matriz = new boolean[numFilas][numColumnas];
+    Casilla[][] casillas = getTablero();
+    Caballo p = (Caballo)t;
+
+
+    int i = t.getCasiila().posFila();
+    int j = t.getCasiila().posColumna();
+
+
+    //Movimiento arriba
+    int iArriba = i-2;
+    int jArribaDerecha = j+1;
+    int jArribaIzquieda = j-1;
+    if(iArriba >= 0){
+
+        if(jArribaDerecha < numColumnas){
+            if( casillas[iArriba][jArribaDerecha].estaOcupada() ){
+  if(!casillas[iArriba][jArribaDerecha].getPieza().getColor().equals(colorOriginal)){
+            matriz[iArriba][jArribaDerecha] = true;
+            
+        }
+       }
+       else{
+        matriz[iArriba][jArribaDerecha] = true;
+       }
+        }
+
+
+    if( jArribaIzquieda >= 0){
+        if( casillas[iArriba][jArribaIzquieda].estaOcupada() ){
+  if(!casillas[iArriba][jArribaIzquieda].getPieza().getColor().equals(colorOriginal)){
+            matriz[iArriba][jArribaIzquieda] = true;
+            
+        }
+       }
+       else{
+        matriz[iArriba][jArribaIzquieda] = true;
+       }
+        }
+    }
+
+
+    //Movimiento abajo
+    int iAbajo = i+2;
+    int jAbajoDerecha = j+1;
+    int jAbajoIzquieda = j-1;
+    if(iAbajo < numFilas){
+
+        if(jAbajoDerecha < numColumnas){
+            if( casillas[iAbajo][jAbajoDerecha].estaOcupada() ){
+  if(!casillas[iAbajo][jAbajoDerecha].getPieza().getColor().equals(colorOriginal)){
+            matriz[iAbajo][jAbajoDerecha] = true;
+            
+        }
+       }
+       else{
+        matriz[iAbajo][jAbajoDerecha] = true;
+       }
+        }
+
+
+    if( jAbajoIzquieda >= 0){
+        if( casillas[iAbajo][jAbajoIzquieda].estaOcupada() ){
+  if(!casillas[iAbajo][jAbajoIzquieda].getPieza().getColor().equals(colorOriginal)){
+            matriz[iAbajo][jAbajoIzquieda] = true;
+            
+        }
+       }
+       else{
+        matriz[iAbajo][jArribaIzquieda] = true;
+       }
+        }
+    }
+
+    //Movimiento DErecha
+    int jDerecha = j+2;
+    int iDerechaArriba = i-1;
+    int iDerechaAbajo = i+1;
+    if(jDerecha < numColumnas){
+
+        if(iDerechaAbajo < numFilas){
+            if( casillas[iDerechaAbajo][jDerecha].estaOcupada() ){
+  if(!casillas[iDerechaAbajo][jDerecha].getPieza().getColor().equals(colorOriginal)){
+            matriz[iDerechaAbajo][jDerecha] = true;
+            
+        }
+       }
+       else{
+        matriz[iDerechaAbajo][jDerecha] = true;
+       }
+        }
+
+
+    if( iDerechaArriba >= 0){
+        if( casillas[iDerechaArriba][jDerecha].estaOcupada() ){
+  if(!casillas[iDerechaArriba][jDerecha].getPieza().getColor().equals(colorOriginal)){
+            matriz[iDerechaArriba][jDerecha] = true;
+            
+        }
+       }
+       else{
+        matriz[iDerechaArriba][jDerecha] = true;
+       }
+        }
+    }
+
+//Movimiento Izquierda
+    int jIzquierda = j-2;
+    int iIzquiedaArriba = i-1;
+    int iIzquierdaAbajo = i+1;
+    if(jIzquierda >= 0){
+
+        if(iIzquiedaArriba >= 0){
+            if( casillas[iIzquiedaArriba][jIzquierda].estaOcupada() ){
+  if(!casillas[iIzquiedaArriba][jIzquierda].getPieza().getColor().equals(colorOriginal)){
+            matriz[iIzquiedaArriba][jIzquierda] = true;
+            
+        }
+       }
+       else{
+        matriz[iIzquiedaArriba][jIzquierda] = true;
+       }
+        }
+
+
+    if( iIzquierdaAbajo < numFilas){
+        if( casillas[iIzquierdaAbajo][jIzquierda].estaOcupada() ){
+  if(!casillas[iIzquierdaAbajo][jIzquierda].getPieza().getColor().equals(colorOriginal)){
+            matriz[iIzquierdaAbajo][jIzquierda] = true;
+            
+        }
+       }
+       else{
+        matriz[iIzquierdaAbajo][jIzquierda] = true;
+       }
+        }
+    }
+
+
+    return matriz;
+}
+
 public Casilla[][] getTablero (){
 
     return this.tablero;
