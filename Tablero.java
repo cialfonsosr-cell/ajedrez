@@ -723,6 +723,142 @@ public boolean[][] calcularMovimientosPosiblesCaballo (Pieza t){
     return matriz;
 }
 
+
+public boolean[][] calcularMovimientosPosiblesRey (Pieza t){
+   
+    String colorOriginal = t.getColor();
+    boolean[][] matriz = new boolean[numFilas][numColumnas];
+    Casilla[][] casillas = getTablero();
+    Rey p = (Rey)t;
+
+    int i = t.getCasiila().posFila();
+    int j = t.getCasiila().posColumna();
+
+
+    //izquierda
+
+
+    if(j-1 >= 0){
+        if( casillas[i][j-1].estaOcupada() ){
+  if(!casillas[i][j-1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i][j-1] = true;
+            
+        }
+       }
+       else{
+        matriz[i][j-1] = true;
+       }
+    }
+
+    //derecha
+    if(j+1 < numColumnas){
+        if( casillas[i][j+1].estaOcupada() ){
+  if(!casillas[i][j+1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i][j+1] = true;
+            
+        }
+       }
+       else{
+        matriz[i][j+1] = true;
+       }
+    }
+
+        //ARRIBA
+    if(i-1 >= 0){
+        if( casillas[i-1][j].estaOcupada() ){
+  if(!casillas[i-1][j].getPieza().getColor().equals(colorOriginal)){
+            matriz[i-1][j] = true;
+            
+        }
+       }
+       else{
+        matriz[i-1][j] = true;
+       }
+    }
+
+    //abajo
+
+     if(i+1 < numFilas){
+  if( casillas[i+1][j].estaOcupada() ){
+  if(!casillas[i+1][j].getPieza().getColor().equals(colorOriginal)){
+            matriz[i+1][j] = true;
+            
+        }
+       }
+       else{
+        matriz[i+1][j] = true;
+       }
+
+     }
+
+     //arriba-izquirda
+ if(j-1 >= 0 && i-1 >= 0){
+ if( casillas[i-1][j-1].estaOcupada() ){
+  if(!casillas[i-1][j-1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i-1][j-1] = true;
+            
+        }
+       }
+       else{
+        matriz[i-1][j-1] = true;
+       }
+
+
+ }
+
+
+      //arriba-derecha
+ if(j+1 < numColumnas && i-1 >= 0){
+ if( casillas[i-1][j+1].estaOcupada() ){
+  if(!casillas[i-1][j+1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i-1][j+1] = true;
+            
+        }
+       }
+       else{
+        matriz[i-1][j+1] = true;
+       }
+
+
+ }
+
+       //abajo-izquierda
+ if(j-1 >= 0 && i+1 < numFilas){
+ if( casillas[i+1][j-1].estaOcupada() ){
+  if(!casillas[i+1][j-1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i+1][j-1] = true;
+            
+        }
+       }
+       else{
+        matriz[i+1][j-1] = true;
+       }
+
+
+ }
+
+
+        //abajo-DERECHA
+ if(j+1 <numColumnas && i+1 < numFilas){
+ if( casillas[i+1][j+1].estaOcupada() ){
+  if(!casillas[i+1][j+1].getPieza().getColor().equals(colorOriginal)){
+            matriz[i+1][j+1] = true;
+            
+        }
+       }
+       else{
+        matriz[i+1][j+1] = true;
+       }
+
+
+ }
+
+
+
+return matriz;
+
+}
+
 public Casilla[][] getTablero (){
 
     return this.tablero;

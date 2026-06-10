@@ -116,11 +116,12 @@ public class VentanaTablero extends JFrame implements ActionListener {
             }
             else{
                 if(botonPulsado.getText().equals("K")){
-                  //  movimientosPosibles = calcularMovimientosPosiblesRey(matriz[f][c]);
+                  movimientosPosibles = t.calcularMovimientosPosiblesRey(mover);
+                       mostrarMatrizDeMovimientos();
                 }
                 if(botonPulsado.getText().equals("Q")){
                     movimientosPosibles = t.calcularMovimientosPosiblesReina(mover);
-                     mostrarMatrizDeMovimientos();
+                  
                 }
                 if(botonPulsado.getText().equals("P")){
                    movimientosPosibles = t.calcularMovimientosPosiblesPeon(mover);
